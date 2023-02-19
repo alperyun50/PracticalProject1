@@ -9,7 +9,7 @@ namespace PracticalProject1.Repositories
     public class ProjectRepository : IProjectRepository
     {
         // added for dbcontext injection
-        private ProjectDbContext _dbContext;
+        private readonly ProjectDbContext _dbContext;
 
         public ProjectRepository(ProjectDbContext dbContext)
         {
@@ -46,5 +46,22 @@ namespace PracticalProject1.Repositories
 
             return null;
         }
+
+        //public async Task<Department> Add_Department(Department dept)
+        //{
+        //    var result = await _dbContext.Departments.AddAsync(dept);
+
+        //    await _dbContext.SaveChangesAsync();
+        //    return result.Entity;
+        //}
+
+        //public async Task<Names> Add_Names(Names name)
+        //{
+        //    var result = await _dbContext.Namess.AddAsync(name);
+
+        //    await _dbContext.SaveChangesAsync();
+        //    return result.Entity;
+        //}
+
     }
 }
