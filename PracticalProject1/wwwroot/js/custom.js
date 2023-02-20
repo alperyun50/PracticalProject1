@@ -29,9 +29,9 @@ function ShowDepartmentsData() {
 };
 
 
-$("#listdept").click(function () {
-    $("#listnames").css("color", "red");
-});
+//$("#listdept").click(function () {
+//    $("#listnames").css("color", "red");
+//});
 
 
 //$("#listdept").click(function () {
