@@ -16,8 +16,8 @@ function ShowDepartmentsData() {
                 object += '<tr>';
                 //object += '<td>' + item.id + '</td>';
                 object += '<td>' + item.code + '</td>';
-                object += '<td><a href="#" class="Clink" id="listdept">' + item.department + '</a></td>';
-                object += '<td><a href="#" class="btn btn-primary" id="btnEdit" onclick="GetDepartment('+item.id+')" >Edit </a></td>';
+                object += '<td><a href="javascript:void(0)" class="Clink" id="listdept" onclick="ChangeColor(' + item.id +')">' + item.department + '</a></td>';
+                object += '<td><a href="#" class="btn btn-primary" id="btnEdit" onclick="GetDepartment(' + item.id + ')" >Edit </a></td>';
                 object += '</tr>';
             });
             $('#department_data').html(object);
@@ -29,15 +29,70 @@ function ShowDepartmentsData() {
 };
 
 
-//$("#listdept").click(function () {
-//    $("#listnames").css("color", "red");
-//});
 
+var departmentIndex;
 
-//$("#listdept").click(function () {
-//    var hedefHucre = $("#listnames").parent().next().next();
+function selectedRow() {
     
-//    hedefHucre.css("color", "red");
+     var table = document.getElementById("department_data");
+
+    for (var i = 0; i < table.rows.length; i++) {
+        table.rows[i].onclick = function ()
+        {
+            departmentIndex = this.rowIndex;
+            //this.classList.toggle("selected");
+            //return index;
+        };     
+    }
+}
+
+selectedRow();
+
+$$("#department_data").click(function () {   
+    selectedRow();
+    var namecell = document.getElementById("name_data");
+   
+    $.each(namecell, function (nameIndex, item) {
+        if (nameIndex == 0 && departmentIndex == 0) {
+            $(item).css("color", "blue");
+        }
+        if (nameIndex == 1 && departmentIndex == 1) {
+            $(item).css("color", "purple");
+        }
+        if (nameIndex == 2 && departmentIndex == 1) {
+            $(item).css("color", "purple");
+        }
+        if (nameIndex == 3 && departmentIndex == 2) {
+            $(item).css("color", "green");
+        }
+    });
+});
+
+//$("#listdept").click(function () {   
+//    var linkIndex = $(this).parent().index();
+//    var cells = $("#listnames");
+//    if (linkIndex == 0) {
+//        var link0 = linkIndex;
+//    }
+//    else if (linkIndex == 1) {
+//        var link1 = linkIndex;
+//    }
+//    else if (linkIndex == 2) {
+//        var link2 = linkIndex;
+//    }
+    
+//    $.each(cells, function (index, item) {
+//        if (index == link0) {
+//            $(item).css("color", "blue");
+//        }
+//        else if (index == link1) {
+//            $(item).css("color", "purple");
+//        }
+//        else if (index == link2) {
+//            $(item).css("color", "green");
+//        }
+        
+//    });
 //});
 
 
@@ -66,7 +121,7 @@ function ShowNamesData() {
 
 
 function GetDepartment(id) {
-    debugger
+    //debugger
     $.ajax({
         url: '/Home/GetDepartment?id=' + id,
         type: 'Get',
@@ -108,36 +163,6 @@ function UpdateDepartment() {
         }
     });
 }
-
-
-
-//$('#btnEditb').click(function () {
-//    $('#editModal').modal('show');
-//});
-
-
-//function AddDepartment() {
-//    var objData = {
-//       Name: $('#Code').val(),
-//       Department: $('#Department').val()
-//    }
-
-//    $.ajax({
-//        url: '/Home/',
-//        type: 'Post',
-//        data: objData,
-//        dataType: 'json',
-//        contentType: 'application/x-www-form-urlencoded ;charset=utf-8;',
-//        success: function (response) {
-//            alert("Data saved..");
-//            ShowDepartmentsData();
-//            hidePopup();
-//        },
-//        error: function () {
-//            alert("Data not edited!..")
-//        }
-//    });
-//};
 
 
 function hidePopup() {

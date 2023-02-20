@@ -25,7 +25,7 @@ namespace PracticalProject1.Migrations
                 columns: table => new
                 {
                     code = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "2000, 1"),
                     names = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
