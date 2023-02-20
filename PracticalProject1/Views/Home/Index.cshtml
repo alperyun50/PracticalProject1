@@ -1,8 +1,72 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Practical Exam</h1>
+  <br />
 </div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>Code</th>
+            <th>Department</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="department_data"></tbody>
+</table>
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>Code</th>
+            <th>Names</th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="name_data"></tbody>
+</table>
+
+
+@*<button class="btn btn-sm btn-primary m-2" id="btnEditb">edit</button>*@
+
+<div class="modal fade modal" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-info modal-title">Edit Department</h3>
+                <button class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group">            
+                        <input type="hidden" class="form-control" id="deptId" disabled="disabled"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Code: </label>
+                        <input type="text" class="form-control" id="Code"/>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Department: </label>
+                        <input type="text" class="form-control" id="Department" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+               @* <button class="btn btn-primary" onclick="AddDepartment();" id="addDepartment">Save</button>*@
+                <button class="btn btn-primary" onclick="UpdateDepartment();" id="updateDepartment">Save</button>
+                <button class="btn btn-danger btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/custom.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>

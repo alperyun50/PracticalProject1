@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System;
 using PracticalProject1.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PracticalProject1.Repositories
 {
@@ -46,6 +48,20 @@ namespace PracticalProject1.Repositories
 
             return null;
         }
+
+        public async Task<Department> Get_Depart(int id)
+        {
+            var result = await _dbContext.Departments.FirstOrDefaultAsync(x => x.Id == id);
+
+            return result;
+        }
+
+        //public JsonResult Update_Departments(int id)
+        //{
+        //    var data = _dbContext.Departments.Where(e => e.Id == id).SingleOrDefault();
+
+        //    return new JsonResult(data);
+        //}
 
         //public async Task<Department> Add_Department(Department dept)
         //{

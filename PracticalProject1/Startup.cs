@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PracticalProject1.Models;
+using PracticalProject1.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace PracticalProject1
         {
             // added for sql connection 
             services.AddDbContext<ProjectDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ProjectConnectionString")));
+            //services.AddTransient<>(IProjectRepository, ProjectRepository);
+            services.AddScoped<IProjectRepository, ProjectRepository>();
 
             services.AddControllersWithViews();
         }

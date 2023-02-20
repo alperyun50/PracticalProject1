@@ -27,6 +27,7 @@ namespace PracticalProject1.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
         {
             try
@@ -41,6 +42,7 @@ namespace PracticalProject1.Controllers
             }
         }
 
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Names>>> GetNames()
         {
             try
@@ -55,7 +57,8 @@ namespace PracticalProject1.Controllers
             }
         }
 
-        public async Task<ActionResult<Department>> UpdateDepartment(Department dept)
+        [HttpPost]
+        public async Task<ActionResult<Department>> UpdateDepartments(Department dept)
         {
             try
             {
@@ -72,6 +75,48 @@ namespace PracticalProject1.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating new department and/or code record!..");
+            }
+        }
+
+        //[HttpPut]
+        //public ActionResult UpdateDepartment(int id)
+        //{
+        //    try
+        //    {
+        //        var department = _projectRepository.Update_Departments(id);
+
+        //        return Ok(department);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error updating new department and/or code record!..");
+        //    }
+        //}
+
+        //public JsonResult GetDepartment(int id)
+        //{
+        //    var data = _projectDbContext.Departments.Where(e => e.Id == id).SingleOrDefault();
+
+        //    return new JsonResult(data);
+        //}
+
+        [HttpGet]
+        public async Task<ActionResult<Department>> GetDepartment(int Id)
+        {
+            try
+            {
+                var result = await _projectRepository.Get_Depart(Id);
+
+                if (result == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriewing data from the database!..");
             }
         }
 
